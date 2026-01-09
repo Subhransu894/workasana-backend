@@ -4,11 +4,11 @@ exports.createTeam = async(req,res)=>{
     try {
         const {name,description}=req.body;
         if(!name || !description){
-            res.status(401).json({message:"name and description are required"})
+            return res.status(401).json({message:"name and description are required"})
         }
         const team = new Team({name,description})
         await team.save()
-        res.status(201).json({team})
+        res.status(201).json(team)
     } catch (error) {
         console.log("Error in create Team",error);
         res.status(500).json({message:"Server Error",error:error.message})

@@ -18,12 +18,7 @@ exports.register = async(req,res)=>{
             name,email,password:hashedPassword
         })
         await owner.save();
-        const token = jwt.sign(
-            {userId:owner._id},
-            process.env.JWT_SECRET,
-            {expiresIn:"1d"},
-        )
-        res.status(201).json({token})
+        res.status(201).json({message:"Registration Successful. Please login"})
     } catch (error) {
         res.status(500).json({message:"Server Error"})
     }
